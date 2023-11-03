@@ -1,9 +1,10 @@
 import { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import store from '../app/stores/cryptoStore';
+import store from '@/app/stores/cryptoStore';
 import React from 'react';
+import './globals.css'
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <Provider store={store}>
       <Component {...pageProps} />
@@ -11,4 +12,4 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   );
 }
 
-export default MyApp;
+export default App;

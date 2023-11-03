@@ -1,4 +1,4 @@
-'use server'
+"use server"
 import { type CryptoData } from '../types/crypto';
 export const FETCH_CRYPTOS = 'FETCH_CRYPTOS';
 export const FILTER_CRYPTOS = 'FILTER_CRYPTOS';

@@ -1,4 +1,4 @@
-import { type CryptoData } from '../../types/crypto';
+import { type CryptoData } from '@/app/types/crypto';
 
 const CoinCard = ({ crypto }: { crypto: CryptoData }) => {
   return (

@@ -1,15 +1,12 @@
-'use client'
-import Link from 'next/link';
-import { type CryptoData } from '../../../types/crypto';
-import useHttpRequest from "../../../hooks/useHttpRequest";
+import { useRouter } from 'next/router'
+import { CryptoData } from '../../../app/types/crypto';
+import useHttpRequest from '@/app/hooks/useHttpRequest';
 import CoinCard from '@/app/components/Card/CoinCard';
+import Link from 'next/link';
 
-function CurrencyPage({ params }: { params: { id: string } }) {
-  const { data, error } = useHttpRequest(`https://api.coinlore.net/api/ticker/?id=${params.id}`);
-
-  if (Object.keys(error).length > 0) {
-    return <div>An error has ocurred</div>
-  }
+const CoinDetails = () => {
+  const router = useRouter()
+  const { data, error } = useHttpRequest(`https://api.coinlore.net/api/ticker/?id=${router.query.id}`);
 
   return (
     <main className="min-h-screen">
@@ -29,7 +26,7 @@ function CurrencyPage({ params }: { params: { id: string } }) {
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default CurrencyPage
+export default CoinDetails;

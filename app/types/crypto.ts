@@ -9,9 +9,18 @@ export interface CryptoData {
   symbol: string;
   rank: number;
   market_cap_usd: number;
+  currency: string;
 }
 
 export interface Action {
   type: string;
   payload?: any;
+}
+
+export interface RootState {
+  crypto: {
+    cryptos: CryptoData[];
+    filteredCryptos: CryptoData[] | null;
+    selectedCrypto: CryptoData | null;
+  };
 }

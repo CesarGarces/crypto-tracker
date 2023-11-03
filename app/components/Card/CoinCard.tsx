@@ -13,7 +13,7 @@ const CoinCard = ({ crypto }: { crypto: CryptoData }) => {
               {crypto.symbol}
             </div>
           </div>
-          <p className="text-slate-100 text-base">Price: {crypto.price_usd} USD</p>
+          <p className="text-slate-100 text-base">Exchange: {crypto.price_usd} USD</p>
         </div>
         <div className="flex items-center">
           <div className="text-sm">

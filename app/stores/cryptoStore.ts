@@ -1,22 +1,10 @@
-import { createStore, combineReducers, Store, Reducer } from 'redux';
-import { type CryptoData, type AppState, type Action } from '../types/crypto';
+import { configureStore } from '@reduxjs/toolkit';
+import cryptoReducer from '../reducers/cryptoReducers';
 
-const initialState: AppState = {
-  cryptos: [],
-};
-
-const rootReducer: Reducer<AppState, Action> = (state = initialState, action) => {
-  switch (action.type) {
-    case 'LOAD_CRYPTO_DATA':
-      return {
-        ...state,
-        cryptos: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-const store: Store<AppState, Action> = createStore(rootReducer);
+const store = configureStore({
+  reducer: {
+    crypto: cryptoReducer,
+  },
+});
 
 export default store;

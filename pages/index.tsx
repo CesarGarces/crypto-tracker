@@ -30,9 +30,9 @@ const Home = () => {
     <main className="w-full min-h-screen p-20">
       <aside className="flex flex-wrap justify-end gap-3">
         <label className="p-3">Show Items</label>
-        <button className={`rounded-md bg-slate-900 p-3 hover:bg-slate-700 ${quantity === 10 ? 'bg-slate-700' : ''}`} onClick={() => setQuantity(10)}>10</button>
-        <button className={`rounded-md bg-slate-900 p-3 hover:bg-slate-700 ${quantity === 50 ? 'bg-slate-700' : ''}`} onClick={() => setQuantity(50)}>50</button>
-        <button className={`rounded-md bg-slate-900 p-3 hover:bg-slate-700 ${quantity === 100 ? 'bg-slate-700' : ''}`} onClick={() => setQuantity(100)}>100</button>
+        <button className={'rounded-md bg-slate-900 p-4 hover:bg-slate-700'} onClick={() => setQuantity(10)}>10</button>
+        <button className={'rounded-md bg-slate-900 p-4 hover:bg-slate-700'} onClick={() => setQuantity(50)}>50</button>
+        < button className={'rounded-md bg-slate-900 p-3 hover:bg-slate-700'} onClick={() => setQuantity(100)}>100</button>
       </aside>
       <CryptoFilter data={data} />
       {isLoading && <p>Loading...</p>}

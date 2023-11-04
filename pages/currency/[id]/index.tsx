@@ -19,22 +19,23 @@ const CoinDetails = () => {
 
   return (
     <main className="min-h-screen">
-      <div className="flex flex-col items-center justify-center">
-        <div className="flex flex-wrap justify-start gap-4">
-          <Link className={`rounded-md bg-slate-900 p-3 hover:bg-slate-700`} href="/"> Go Back</Link>
+      <section className='p-20'>
+        <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-wrap justify-start gap-4">
+            <Link className={`rounded-md bg-slate-900 p-3 hover:bg-slate-700`} href="/"> Go Back</Link>
+          </div>
+          <div>
+            <p className="text-4xl font-bold  mb-4">Cryptocurrency details</p>
+            {isLoading && <p>Loading...</p>}
+            {data ?
+              data.map((crypto: CryptoData) => (
+                <div key={crypto.id}>
+                  <CoinCard crypto={crypto} />
+                </div>
+              )) : <div>No data available</div>}
+          </div>
         </div>
-        <div>
-          <p className="text-4xl font-bold  mb-4">Cryptocurrency details
-          </p>
-          {isLoading && <p>Loading...</p>}
-          {data ?
-            data.map((crypto: CryptoData) => (
-              <div key={crypto.id}>
-                <CoinCard crypto={crypto} />
-              </div>
-            )) : <div>No data available</div>}
-        </div>
-      </div>
+      </section>
     </main>
   );
 };

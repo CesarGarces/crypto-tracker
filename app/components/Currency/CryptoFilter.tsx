@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { type RootState, type CryptoData } from '../../types/crypto';
-import { useRouter } from 'next/router'
 import CryptoList from './CryptoList';
 
 export function CryptoFilter({ data }: { data: CryptoData[] }) {

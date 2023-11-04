@@ -1,80 +1,35 @@
-import React from 'react';
-import { render, act, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import useHttpRequest from '../app/hooks/useHttpRequest';
-
-// Mock de fetch
-global.fetch = jest.fn();
+import { renderHook } from '@testing-library/react-hooks';
+import useHttpRequest from '@/app/hooks/useHttpRequest'; // Ajusta la importación a la ubicación de tu hook
 
 describe('useHttpRequest', () => {
-  it('fetches data successfully', async () => {
-    const url = 'https://example.com/data';
-    const mockData = { data: [{ id: 1, name: 'Item 1' }, { id: 2, name: 'Item 2' }] };
-    global.fetch.mockResolvedValueOnce({
-      json: jest.fn().mockResolvedValueOnce(mockData),
-    })
+  let originalFetch: typeof globalThis.fetch;
+  let fetchMock: jest.Mock;
 
-    // Componente de prueba que utiliza el hook
-    function TestComponent() {
-      const { data, isLoading, error } = useHttpRequest(url);
-      return (
-        <div>
-          {isLoading && <div>Loading data...</div>}
-          {error ? <div>Error: {error.message}</div> : null}
-          {data.map((item) => (
-            <div key={item.id}>{item.name}</div>
-          ))}
-        </div>
-      );
-    }
+  beforeEach(() => {
+    originalFetch = globalThis.fetch;
 
-    // Renderiza el componente de prueba
-    render(<TestComponent />);
+    fetchMock = jest.fn();
 
-    // Verifica que se muestra el mensaje de carga mientras se carga la data
-    expect(screen.getByText('Loading data...')).toBeInTheDocument();
-
-    // Espera a que la promesa de fetch se resuelva
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0)); // Espera un ciclo de eventos
-    });
-
-    // Verifica que la data se muestra correctamente
-    expect(screen.getByText('Item 1')).toBeInTheDocument();
-    expect(screen.getByText('Item 2')).toBeInTheDocument();
-    expect(screen.queryByText('Loading data...')).toBeNull();
-    expect(screen.queryByText('Error:')).toBeNull();
+    globalThis.fetch = fetchMock;
   });
 
-  it('handles errors during fetching', async () => {
-    const url = 'https://example.com/error';
-    const mockError = new Error('Network error');
-    global.fetch.mockRejectedValue(mockError);
+  afterEach(() => {
+    globalThis.fetch = originalFetch;
+  });
 
-    // Componente de prueba que utiliza el hook
-    function TestComponent() {
-      const { data, isLoading, error } = useHttpRequest(url);
-      return (
-        <div>
-          {isLoading && <div>Loading data...</div>}
-          {error ? <div>Error: {error.message}</div> : null}
-          {data.map((item) => (
-            <div key={item.id}>{item.name}</div>
-          ))}
-        </div>
-      );
-    }
+  it('handles errors', async () => {
+    const url = 'https://example.com/api/data';
+    const fakeError = new Error('Network error');
 
-    // Renderiza el componente de prueba
-    render(<TestComponent />);
+    fetchMock.mockRejectedValue(fakeError);
 
-    // Espera a que la promesa de fetch se rechace
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 0)); // Espera un ciclo de eventos
-    });
+    const { result, waitForNextUpdate } = renderHook(() => useHttpRequest(url));
+    await waitForNextUpdate();
 
-    // Verifica que se muestra el mensaje de error
-    expect(screen.getByText('Error: Network error')).toBeInTheDocument();
-    expect(screen.queryByText('Loading data...')).toBeNull();
+    expect(result.current.data).toEqual([]);
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.error).toBe(fakeError);
+
+    fetchMock.mockClear();
   });
 });

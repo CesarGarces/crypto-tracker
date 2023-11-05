@@ -93,11 +93,13 @@ const CryptoList: React.FC<CryptoData> = () => {
       <section className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {allCryptos ?
           filteredCryptos.map((item: CryptoData) => (
-            <li key={item.id}>
-              <Link href={`/currency/${item.id}`}>
-                <CoinCard crypto={item} />
-              </Link>
-            </li>
+            <ul key={item.id}>
+              <li>
+                <Link href={`/currency/${item.id}`}>
+                  <CoinCard crypto={item} />
+                </Link>
+              </li>
+            </ul>
           )) : <div>No data available</div>
         }
         {filteredCryptos.length === 0 && <div>No data available</div>}

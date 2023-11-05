@@ -50,6 +50,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Run test
 ```bash
-pnpm run test
+npm run test
+# or
+pnpm run dev
 
 ```

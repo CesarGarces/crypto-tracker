@@ -12,7 +12,7 @@ const CryptoList: React.FC<CryptoData> = () => {
   const dispatch = useDispatch();
 
   const [currencyFilter, setCurrencyFilter] = useState<string>('');
-  const [quantity, setQuantity] = useState<number>(10);
+  const [quantity, setQuantity] = useState<number>(100);
 
   const longViewId = useId();
   const filterCryptoId = useId();

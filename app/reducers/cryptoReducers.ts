@@ -1,5 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { CryptoData } from '../types/crypto';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   cryptos: [],

@@ -1,21 +1,32 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router'
-import { type CryptoData } from '@/app/types/crypto';
-import useHttpRequest from '@/app/hooks/useHttpRequest';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, type CryptoData } from '@/app/types/crypto';
 import CoinCard from '@/app/components/Card/CoinCard';
 import Link from 'next/link';
-import Hero from '@/app/components/Hero/Hero';
+import { getCryptoDetails } from '@/app/services/cryptos';
+import { fetchCryptos } from '@/app/reducers/cryptoReducers';
+import { useNameApp } from '@/app/hooks/useNameApp';
 
 const CoinDetails = () => {
   const router = useRouter()
-  const { data, error, isLoading } = useHttpRequest(`https://api.coinlore.net/api/ticker/?id=${router.query.id}`);
+  const dispatch = useDispatch();
 
-  if (Object.keys(error).length > 0) {
-    return (
-      <main className="min-h-screen p-20">
-        <p>An error occurred</p>
-      </main>
-    )
-  }
+  useEffect(() => {
+    const fetchAllCryptos = async () => {
+      const ryptosData = await getCryptoDetails(Number(router.query.id));
+      dispatch(fetchCryptos(ryptosData));
+    };
+    fetchAllCryptos();
+
+  }, [dispatch, router.query.id]);
+
+  const cryptoDetails = useSelector((state: RootState) => state.crypto.cryptos);
+
+  useNameApp({
+    title: `(${cryptoDetails.length}) - Cryptocurrencies`,
+    description: 'Cryptocurrency Information'
+  })
 
   return (
     <main className="min-h-screen">
@@ -26,9 +37,8 @@ const CoinDetails = () => {
           </div>
           <div>
             <p className="text-4xl font-bold  mb-4">Cryptocurrency details</p>
-            {isLoading && <p>Loading...</p>}
-            {data ?
-              data.map((crypto: CryptoData) => (
+            {cryptoDetails ?
+              cryptoDetails.map((crypto: CryptoData) => (
                 <div key={crypto.id}>
                   <CoinCard crypto={crypto} />
                 </div>

@@ -8,7 +8,7 @@ describe('cryptoReducer', () => {
   };
 
   it('should set the cryptos and filteredCryptos to the payload', () => {
-    const payload: CryptoData[] = [ {
+    const payload: CryptoData[] = [{
       id: 1,
       name: 'Bitcoin',
       price_usd: 0,

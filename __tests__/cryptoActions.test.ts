@@ -10,14 +10,15 @@ describe('Filter Actions', () => {
   });
   it('Should create an action to fetch cryptos', () => {
     const expectedAction = {
-      payload: { 
+      payload: {
         id: 1,
         name: 'Bitcoin',
         price_usd: 0,
         symbol: 'BTC',
         rank: 0,
         market_cap_usd: 0,
-        currency: '' },
+        currency: ''
+      },
       type: 'FETCH_CRYPTOS',
     };
     expect(fetchCryptos({

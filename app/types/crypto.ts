@@ -20,7 +20,6 @@ export interface Action {
 export interface RootState {
   crypto: {
     cryptos: CryptoData[];
-    filteredCryptos: CryptoData[] | null;
     selectedCrypto: CryptoData | null;
   };
 }

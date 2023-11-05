@@ -25,11 +25,11 @@ describe('useFetchCrypto', () => {
   });
 
   it('handles loading state and errors', () => {
-  mockUseHttpRequest.mockReturnValue({ data: null, isLoading: true, error: 'Network error' });
+    mockUseHttpRequest.mockReturnValue({ data: null, isLoading: true, error: 'Network error' });
 
-  const { result } = renderHook(() => useFetchCrypto());
+    const { result } = renderHook(() => useFetchCrypto());
 
-  expect(result.current.data).toStrictEqual([]);
-  expect(result.current.isLoading).toBe(false);
-});
+    expect(result.current.data).toStrictEqual([]);
+    expect(result.current.isLoading).toBe(false);
+  });
 });

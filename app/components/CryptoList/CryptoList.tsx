@@ -61,7 +61,7 @@ const CryptoList: React.FC<CryptoData> = () => {
       <section>
         <label htmlFor={filterCryptoId} className="block">
           <span className="block text-lg font-medium text-slate-50">Search for a cryptocurrency</span>
-          <div className="bg-white shadow p-4 rounded-lg dark:bg-gray-800">
+          <div className="shadow p-4 rounded-lg dark:bg-slate-900 ">
             <div className="flex items-center space-x-2">
               <svg
                 className=" h-5 w-5 text-gray-500 dark:text-gray-300"

@@ -18,7 +18,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 pnpm run test
 
 ```
-structure flux - SOLID - singleton hook
+structure flux - SOLID - singleton hook ok
 implemente historyBook
-redux --> 
-Performance split code lazy component - infinite scroll
+redux --> ok
+Performance split code lazy component - infinite scroll ok
+atomic design ok
+testing ok

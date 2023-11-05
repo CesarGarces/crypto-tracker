@@ -13,11 +13,11 @@ const CoinDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchAllCryptos = async () => {
+    const getCryptoDetailsData = async () => {
       const ryptosData = await getCryptoDetails(Number(router.query.id));
       dispatch(fetchCryptos(ryptosData));
     };
-    fetchAllCryptos();
+    getCryptoDetailsData();
 
   }, [dispatch, router.query.id]);
 
@@ -37,7 +37,7 @@ const CoinDetails = () => {
           </div>
           <div>
             <p className="text-4xl font-bold  mb-4">Cryptocurrency details</p>
-            {cryptoDetails ?
+            {cryptoDetails && cryptoDetails.length === 1 ?
               cryptoDetails.map((crypto: CryptoData) => (
                 <div key={crypto.id}>
                   <CoinCard crypto={crypto} />

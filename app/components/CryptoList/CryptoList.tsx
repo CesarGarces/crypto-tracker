@@ -1,4 +1,4 @@
-import { useEffect, useState, useId, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { type CryptoData, type RootState } from '@/app/types/crypto';
 import { fetchCryptos } from '@/app/reducers/cryptoReducers';
@@ -6,15 +6,14 @@ import { useNameApp } from '@/app/hooks/useNameApp';
 import { getAllCryptos } from '@/app/services/cryptos';
 import CoinCard from '../Card/CoinCard';
 import Link from 'next/link';
+import { SearchBar } from '../SearchBar/SearchBar';
 
-const CryptoList: React.FC<CryptoData> = () => {
+function CryptoList() {
 
   const dispatch = useDispatch();
 
   const [currencyFilter, setCurrencyFilter] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(10);
-
-  const filterCryptoId = useId();
 
   const longViewRef = useRef<HTMLDivElement>(null);
 
@@ -59,36 +58,7 @@ const CryptoList: React.FC<CryptoData> = () => {
   return (
     <main className="w-full min-h-screen p-20">
       <section>
-        <label htmlFor={filterCryptoId} className="block">
-          <span className="block text-lg font-medium text-slate-50">Search for a cryptocurrency</span>
-          <div className="shadow p-4 rounded-lg dark:bg-slate-900 ">
-            <div className="flex items-center space-x-2">
-              <svg
-                className=" h-5 w-5 text-gray-500 dark:text-gray-300"
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-              <input
-                id={filterCryptoId}
-                className="w-full focus:outline-none dark:bg-gray-700 dark:text-white p-3"
-                placeholder="Type currency name"
-                type="text"
-                value={currencyFilter}
-                onChange={handleFilterChange}
-              />
-            </div>
-          </div>
-        </label>
+        <SearchBar handleFilterChange={handleFilterChange} currencyFilter={currencyFilter} />
       </section>
       <section className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {allCryptos ?

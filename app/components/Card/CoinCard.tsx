@@ -1,4 +1,5 @@
 import { type CryptoData } from '@/app/types/crypto';
+import formatPrice from '@/app/utils/formatPrice';
 
 const CoinCard = ({ crypto }: { crypto: CryptoData }) => {
   return (
@@ -13,12 +14,12 @@ const CoinCard = ({ crypto }: { crypto: CryptoData }) => {
               {crypto.symbol}
             </div>
           </div>
-          <p className="text-slate-100 text-base">Exchange: ${crypto.price_usd} USD</p>
+          <p className="text-slate-100 text-2xl">{formatPrice(crypto.price_usd)}</p>
         </div>
         <div className="flex items-center">
           <div className="text-sm">
             <p className="text-slate-300 leading-none">Rank: {crypto.rank}</p>
-            <p className="text-slate-300">Market Cap: {crypto.market_cap_usd}</p>
+            <p className="text-slate-300">Market Cap: {formatPrice(crypto.market_cap_usd)}</p>
           </div>
         </div>
       </div>

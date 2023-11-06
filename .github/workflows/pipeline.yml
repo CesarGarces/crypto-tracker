@@ -1,5 +1,5 @@
 name: Deployment Pipeline
-run-name: ${{ github.actor }} is deploy 🚀
+run-name: ${{ github.actor }} is deploying 🚀
 on:
   push:
     branches:
@@ -29,3 +29,9 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Test
+        run: pnpm run test

@@ -14,8 +14,8 @@ const CoinDetails = () => {
 
   useEffect(() => {
     const getCryptoDetailsData = async () => {
-      const ryptosData = await getCryptoDetails(Number(router.query.id));
-      dispatch(fetchCryptos(ryptosData));
+      const cryptoData = await getCryptoDetails(Number(router.query.id));
+      dispatch(fetchCryptos(cryptoData));
     };
     getCryptoDetailsData();
 

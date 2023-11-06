@@ -1,5 +1,5 @@
 name: Deployment Pipeline
-
+run-name: ${{ github.actor }} is deploy 🚀
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:

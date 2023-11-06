@@ -1,3 +1,5 @@
+[![Deployment Pipeline](https://github.com/CesarGarces/crypto-tracker/actions/workflows/pipeline.yml/badge.svg)](https://github.com/CesarGarces/crypto-tracker/actions/workflows/pipeline.yml)
+
 # Cryptocurrency Project
 
 This project focuses on providing information about cryptocurrencies and uses Next.js for its development. It incorporates various practices and technologies, such as FLUX framework, SOLID, singleton hook, Redux, split code, lazy loading, infinite scrolling, atomic design, and testing.
@@ -19,6 +21,8 @@ This project focuses on providing information about cryptocurrencies and uses Ne
 - **Atomic Design**: Follows atomic design for efficient organization and utilization of components.
 
 - **Testing**: Tests are included to ensure the quality and reliability of the code.
+
+- **[CI/CD]**: Integrated continuous integration and continuous deployment
 
 ## Config
 

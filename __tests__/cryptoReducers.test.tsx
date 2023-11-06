@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { fetchCryptos } from '../app/reducers/cryptoReducers'; // replace with your actual file path
+import { fetchCryptos } from '../app/reducers/cryptoReducers';
 
 describe('fetchCryptos', () => {
   it('should set cryptos to the payload', () => {

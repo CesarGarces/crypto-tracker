@@ -1,6 +1,6 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { getAllCryptos, getCryptoDetails } from "../app/services/cryptos"; // Reemplaza con la ruta correcta de tu archivo de funciones
+import { getAllCryptos, getCryptoDetails } from "../app/services/cryptos";
 
 describe("API Functions", () => {
   let mock: MockAdapter;
@@ -25,7 +25,7 @@ describe("API Functions", () => {
 
   it("should fetch crypto details", async () => {
     const cryptoId = 1;
-    const mockData = { id: 1, name: "Crypto 1", /* otros datos */ };
+    const mockData = { id: 1, name: "Crypto 1" };
     mock.onGet(`${process.env.API_URL}/ticker/?id=${cryptoId}`).reply(200, mockData);
 
     const result = await getCryptoDetails(cryptoId);

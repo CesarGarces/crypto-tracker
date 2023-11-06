@@ -24,6 +24,8 @@ This project focuses on providing information about cryptocurrencies and uses Ne
 
 - **[CI/CD]**: Integrated continuous integration and continuous deployment
 
+vercel url [https://crypto-tracker-weld.vercel.app/](https://crypto-tracker-weld.vercel.app/) to see the result.
+
 ## Config
 
 Below are the steps to configure and run the project locally:
